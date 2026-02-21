@@ -13,4 +13,12 @@ public class Account {
          this.customerId=customerId;
          this.balance=balance;
      }
+     public String getAccountNumber(){
+         return AccountNumber;
+     }
+     public void setAccountNumber(String accountNumber){
+         this.AccountNumber=accountNumber;
+     }
+
+
 }
