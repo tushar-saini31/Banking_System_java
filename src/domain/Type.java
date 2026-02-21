@@ -1,4 +1,4 @@
-package app.domain;
+package domain;
 
 public enum Type  {
     DEPOSIT,

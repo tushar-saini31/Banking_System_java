@@ -1,4 +1,4 @@
-package app.domain;
+package domain;
 import java.time.LocalDateTime;
 public class Transaction {
     private String id;

@@ -1,11 +1,16 @@
 package app;
+import service.BankService;
+import service.impl.BankServiceImpl;
+
 import java.util.Scanner;
 public class Main {
     public static void main(String[] argc)
     {
         Scanner scanner= new Scanner(System.in);
+        BankService bankService=new BankServiceImpl();
         boolean running=true;
         System.out.println("Welcome to Console Bank");
+
         while(running) {
             System.out.println("""
                      1) Open Account
@@ -22,14 +27,15 @@ public class Main {
             System.out.println("CHOICE" + choice);
 
             switch(choice){
+
+                case "1"->openAccount(scanner, bankService);
+                case "2"->deposit(scanner);
+                case "3"->withdraw(scanner);
+                case "4"->transfer(scanner);
+                case "5"->statement(scanner);
+                case "6"->listAccounts(scanner);
+                case "7"->searchAccounts(scanner);
                 case "0"->running=false;
-                case "2"->openAccount(scanner);
-                case "3"->deposit(scanner);
-                case "4"->withdraw(scanner);
-                case "5"->transfer(scanner);
-                case "6"->statement(scanner);
-                case "7"->listAccounts(scanner);
-                case "8"->searchAccounts(scanner);
             }
 
         }
@@ -52,11 +58,22 @@ public class Main {
 
     }
 
-    private static void openAccount(Scanner scanner)
+    private static void openAccount(Scanner scanner, BankService bankService)
     {
         System.out.println("Customer nameL ");
+        String name=scanner.nextLine().trim();
+
         System.out.println("Customer email: ");
-        System.out.println("Account Types");
+        String email=scanner.nextLine().trim();
+
+        System.out.println("Account Types (Saving/Current)");
+        String type=scanner.nextLine().trim();
+
+        System.out.println("Initial deposit (optional, blank for 0)");
+        String amountStr=scanner.nextLine().trim();
+        Double initial=Double.valueOf(amountStr);
+
+        bankService.openAccount(name, email, type);
     }
 
     private static void searchAccounts(Scanner scanner) {
